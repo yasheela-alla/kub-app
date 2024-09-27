@@ -1,19 +1,47 @@
 package com.example;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
- * This is a class.
+ * This is a Greeter servlet.
  */
-public class Greeter {
+@WebServlet("/action_page.php")
+public class GreeterServlet extends HttpServlet {
 
-  /**
-   * This is a constructor.
-   */
-  public Greeter() {
+    /**
+     * This is a constructor.
+     */
+    public GreeterServlet() {
+        super();
+    }
 
-  }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Get form parameters
+        String name = request.getParameter("Name");
+        String mobile = request.getParameter("mobile");
+        String email = request.getParameter("email");
+        String password = request.getParameter("psw");
 
-  //TODO: Add javadoc comment
-  public String greet(String someone) {
-    return String.format("Hello, %s!", someone);
-  }
+        // Create a greeting message
+        Greeter greeter = new Greeter();
+        String greeting = greeter.greet(name);
+
+        // Set response content type
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println("<h1>" + greeting + "</h1>");
+        out.println("<p>Mobile: " + mobile + "</p>");
+        out.println("<p>Email: " + email + "</p>");
+        out.println("<p>Password: " + password + "</p>"); // Be careful with displaying passwords!
+        out.println("</body></html>");
+    }
 }
