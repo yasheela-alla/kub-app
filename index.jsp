@@ -1,4 +1,4 @@
-<form action="action_page.php">
+<form action="action_page.php" method="post">
   <div class="container">
     <h1>Register as a Warrior of the Anime Legion</h1>
     <p>Train with legends like Eren Yeager, Tanjiro Kamado, Naruto Uzumaki, and All Might. Will you rise to become a hero?</p>
